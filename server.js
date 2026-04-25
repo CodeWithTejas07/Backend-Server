@@ -77,4 +77,6 @@ app.use('/', licenseRoutes);
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`✓ Desact Backend running on http://localhost:${PORT}`);
+    console.log(`[HEALTH] Server started at ${new Date().toISOString()}`);
+    console.log(`[DB] Using SQLite database`);
 });
