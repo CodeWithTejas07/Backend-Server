@@ -19,7 +19,7 @@
     "helmet": "^7.0.0",
     "mongoose": "^8.0.0",
     "nedb-promises": "^6.2.3",
-    "sqlite3": "^6.0.1"
+    "better-sqlite3": "^11.0.0"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
