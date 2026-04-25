@@ -1,6 +1,9 @@
 {
   "name": "license-bot-backend",
   "version": "1.0.0",
+  "engines": {
+    "node": "20.x"
+  },
   "description": "License management system backend",
   "main": "server.js",
   "scripts": {
