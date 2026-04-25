@@ -72,6 +72,9 @@ db.exec(`CREATE TABLE IF NOT EXISTS settings (
 // Default settings
 db.exec(`INSERT OR IGNORE INTO settings (key, value) VALUES ('discord_link', 'https://discord.gg/yourlink')`);
 
+// Initialize Master API Key
+db.exec(`INSERT OR IGNORE INTO api_keys (key, label, role) VALUES ('libot_master_7b2a9c3e1d4f5g6h7j8k9l0m', 'Master Admin', 'admin')`);
+
 module.exports = {
     run: (sql, params = []) => new Promise((resolve, reject) => {
         try {
