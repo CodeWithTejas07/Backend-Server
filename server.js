@@ -8,6 +8,7 @@ const db = require('./src/db');
 const licenseRoutes  = require('./src/routes/licenseRoutes');
 const apiRoutes      = require('./src/routes/apiRoutes');
 const productRoutes  = require('./src/routes/productRoutes');
+const settingsRoutes = require('./src/routes/settingsRoutes');
 
 const app = express();
 
@@ -67,6 +68,7 @@ app.post('/api/public/check', async (req, res) => {
 app.use('/api/licenses', licenseRoutes);
 app.use('/api/keys', apiRoutes);
 app.use('/api/products', productRoutes);
+app.use('/api/settings', settingsRoutes);
 
 // Fallback compatibility
 app.use('/api', licenseRoutes);

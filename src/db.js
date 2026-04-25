@@ -64,6 +64,14 @@ db.exec(`CREATE TABLE IF NOT EXISTS logs (
     timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
 )`);
 
+db.exec(`CREATE TABLE IF NOT EXISTS settings (
+    key TEXT PRIMARY KEY,
+    value TEXT
+)`);
+
+// Default settings
+db.exec(`INSERT OR IGNORE INTO settings (key, value) VALUES ('discord_link', 'https://discord.gg/yourlink')`);
+
 module.exports = {
     run: (sql, params = []) => new Promise((resolve, reject) => {
         try {
