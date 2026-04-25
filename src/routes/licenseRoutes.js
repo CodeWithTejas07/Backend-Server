@@ -110,7 +110,14 @@ router.post('/generate', auth, async (req, res) => {
     await db.run('INSERT INTO licenses (key, product_name, user_id, expires_at, max_resets) VALUES (?, ?, ?, ?, ?)', 
         [key, product_name, user_id || null, expiresAt, resets]);
     
-    res.json({ success: true, key, expiresAt, max_resets: resets });
+    res.json({ 
+        success: true, 
+        key, 
+        product: product_name, 
+        status: 'active', 
+        expiresAt, 
+        max_resets: resets 
+    });
 });
 
 // POST /claim

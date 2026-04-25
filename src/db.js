@@ -47,11 +47,13 @@ db.exec(`CREATE TABLE IF NOT EXISTS api_keys (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     key TEXT UNIQUE,
     name TEXT,
+    role TEXT DEFAULT 'admin',
     status TEXT DEFAULT 'active',
     expires_at DATETIME,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     last_used_at DATETIME
 )`);
+try { db.exec('ALTER TABLE api_keys ADD COLUMN role TEXT DEFAULT "admin"'); } catch (e) {}
 
 db.exec(`CREATE TABLE IF NOT EXISTS logs (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -73,7 +75,7 @@ db.exec(`CREATE TABLE IF NOT EXISTS settings (
 db.exec(`INSERT OR IGNORE INTO settings (key, value) VALUES ('discord_link', 'https://discord.gg/yourlink')`);
 
 // Initialize Master API Key
-db.exec(`INSERT OR IGNORE INTO api_keys (key, label, role) VALUES ('libot_master_7b2a9c3e1d4f5g6h7j8k9l0m', 'Master Admin', 'admin')`);
+db.exec(`INSERT OR IGNORE INTO api_keys (key, name, role) VALUES ('libot_master_7b2a9c3e1d4f5g6h7j8k9l0m', 'Master Admin', 'admin')`);
 
 module.exports = {
     run: (sql, params = []) => new Promise((resolve, reject) => {
