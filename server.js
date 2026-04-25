@@ -44,7 +44,7 @@ app.post('/api/public/check', async (req, res) => {
         if (license.expires_at) {
             const grace = 2 * 24 * 60 * 60 * 1000;
             if (new Date() > new Date(new Date(license.expires_at).getTime() + grace)) {
-                await db.run('UPDATE licenses SET status = "expired" WHERE key = ?', [license_key]);
+                await db.run("UPDATE licenses SET status = 'expired' WHERE key = ?", [license_key]);
                 return res.json({ valid: false, message: 'License expired', status: 'expired' });
             }
         }

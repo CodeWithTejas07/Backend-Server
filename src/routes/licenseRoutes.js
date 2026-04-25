@@ -34,7 +34,7 @@ const validateHandler = async (req, res) => {
             const expiry = new Date(license.expires_at);
             const grace = 2 * 24 * 60 * 60 * 1000;
             if (new Date() > new Date(expiry.getTime() + grace)) {
-                await db.run('UPDATE licenses SET status = "expired" WHERE key = ?', [license_key]);
+                await db.run("UPDATE licenses SET status = 'expired' WHERE key = ?", [license_key]);
                 return res.json({ valid: false, message: "License expired" });
             }
         }
@@ -188,7 +188,7 @@ router.post('/revoke', auth, async (req, res) => {
         const license = await db.get('SELECT * FROM licenses WHERE key = ?', [license_key]);
         if (!license) return res.status(404).json({ success: false, message: "License not found" });
 
-        await db.run('UPDATE licenses SET status = "revoked" WHERE key = ?', [license_key]);
+        await db.run("UPDATE licenses SET status = 'revoked' WHERE key = ?", [license_key]);
         await db.run('INSERT INTO logs (license_key, ip, action, result, message) VALUES (?, ?, ?, ?, ?)', 
             [license_key, 'N/A', 'revoke', 'success', 'License revoked by admin']);
 
